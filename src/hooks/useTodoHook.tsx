@@ -19,7 +19,7 @@ const todosReducer = (
         },
       ];
     case "delete":
-      return state.filter((oneTodo) => oneTodo.id === action.payload.id);
+      return state.filter((oneTodo) => oneTodo.id !== action.payload.id);
     case "update":
       return state.map((oneTodo) => {
         if (oneTodo.id === action.payload.id) {
@@ -34,24 +34,5 @@ const todosReducer = (
   }
 };
 
-const INITIAL_STATE: Array<TodoType> = [
-  {
-    id: "1",
-    text: "Learn more JS",
-    date: new Date().toLocaleDateString(),
-    isDone: false,
-  },
-  {
-    id: "2",
-    text: "Practice and thinking",
-    date: new Date().toLocaleDateString(),
-    isDone: false,
-  },
-  {
-    id: "3",
-    text: "Chill",
-    date: new Date().toLocaleDateString(),
-    isDone: false,
-  },
-];
+const INITIAL_STATE: Array<TodoType> = [];
 export const useTodoHook = () => useReducer(todosReducer, INITIAL_STATE);

@@ -6,7 +6,7 @@ import { Form } from "./components/Form";
 import { useTodoHook } from "./hooks/useTodoHook";
 function App() {
   const [todos, dispatch] = useTodoHook();
-  const createTodo = (newTodoText: string): void => {
+  const createTodoHandler = (newTodoText: string): void => {
     dispatch({
       type: "add",
       payload: {
@@ -14,11 +14,19 @@ function App() {
       },
     });
   };
+  const deleteTodoHandler = (id: string): void => {
+    dispatch({
+      type: "delete",
+      payload: {
+        id,
+      },
+    });
+  };
   return (
     <>
       <h2>Todo list</h2>
-      <Form createTodo={createTodo} />
-      <Todo todoList={todos} />
+      <Form createTodo={createTodoHandler} />
+      <Todo todoList={todos} deleteTodo={deleteTodoHandler} />
     </>
   );
 }
