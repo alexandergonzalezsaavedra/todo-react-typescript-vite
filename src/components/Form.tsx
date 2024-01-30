@@ -18,7 +18,9 @@ export const Form = ({ createTodo }: Props) => {
     <form onSubmit={handleSubmit}>
       <input type="text" name="newTodoText" onChange={handleChange} />
       <br />
-      <button type="submit">Create todo</button>
+      <button type="submit" disabled={!todoText}>
+        Create todo
+      </button>
     </form>
   );
 };
